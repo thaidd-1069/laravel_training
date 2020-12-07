@@ -15,18 +15,21 @@ class UserController extends Controller
         $users = DB::table('users')->get();
         return view('welcome', ['users' => $users]);
     }
-    public function show(Request $request)
+    public function show($id)
     {
-        $id = 1;
-
         if( $id == null) {
             $user = DB::table('users')->get();
             foreach ($user as $value) {
                 echo $value->id . " " . $value->name . " " . $value->email . "<br/>";
             }
         } else {
-            $user = DB::table('users')->where('id', $id)->first();
-            return view('greeting', ['user' => $user]);
+            // $user = DB::table('users')->where('id', $id)->first();
+            // return view('greeting', ['user' => $user]);
+            if ($id == 3) $id = 1; 
+            $user = User::find($id);
+            foreach ($user->reactions as $role) {
+                echo $role . "<br/>";
+            }
         }
 
     }
