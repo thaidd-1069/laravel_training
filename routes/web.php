@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('auth/login');
+});
 
-Route::get('/', 'UserController@index')->name('users.index');
-Route::get('/users/{id}', 'UserController@show')->name('users.show');
-
+//Route::get('/', 'UserController@index')->name('users.index');
+Route::get('users/{id}', 'UserController@show')->name('users.show');
+Route::get('auth/form', function () {
+    return view('auth/register');
+})->name('register');
 Route::delete('users/{id}', 'UserController@delete')->name('users.delete');
+
+Route::post('auth/login', 'AuthController@login')->name('auth.login');
+Route::post('auth/register', 'AuthController@register')->name('auth.register');

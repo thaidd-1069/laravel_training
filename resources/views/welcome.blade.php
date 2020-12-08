@@ -79,8 +79,12 @@
                     <td>{{ $user->name }}</td>
                     <td>
                         <a href="{{ route('users.show', ['id' => $user->id]) }}">VIEW</a>
-                        |
-                        <a href="{{ route('users.delete', ['id' => $user->id]) }}">DELETE</a>
+                        
+                        <form action="{{ route('users.delete', ['id' => $user->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    //protected $table = 'student'; 
     public function phone()
     {
         return $this->hasOne('App\Phone', 'user_id', 'id');
